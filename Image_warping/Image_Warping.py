@@ -51,7 +51,7 @@ def TargSrcMap_bilinear(*args,**kwargs):
 
 
 def Main():
-    Src_Img= cv2.imread('lena_translate.pgm',0)
+    Src_Img= cv2.imread('lena.pgm',0)
     cv2.imshow('Input image', Src_Img)
     cv2.waitKey(0)
     Targ_Img=TargSrcMap_bilinear(Src_Img, theta=90, scale=0.6)
