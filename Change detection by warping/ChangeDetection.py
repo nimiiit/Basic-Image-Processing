@@ -26,7 +26,7 @@ R=[[A_inv_b[0], A_inv_b[1]],[- A_inv_b[1], A_inv_b[0]]]
 R_inv=np.linalg.inv(R)   
 T=[A_inv_b[2],A_inv_b[3]]
 ##Now create a target image with all zeros the same size as input
-imgH, imgW=Img2.shape
+imgH, imgW=Img1.shape
 Targ_Img=np.zeros([imgH,imgW])
 #print(R_inv)
 for x_Targ in range(imgH):
