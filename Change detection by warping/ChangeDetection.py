@@ -8,18 +8,14 @@ Created on Mon Jun  8 20:48:43 2020
 ''' Given two images with diffreence and the point correspondances, find the change'''
 import cv2
 import numpy as np
+import matplotlib.pyplot as plt
 
 
+Img1= cv2.imread("IMG1.pgm",0)
+Img2= cv2.imread("IMG2.pgm",0)
 
-Img1= cv2.imread('IMG1.pgm',0)
-Img2= cv2.imread('IMG2.pgm',0)
-
-cv2.imshow('Input image1', Img1)
-cv2.waitKey(1)
-cv2.imshow('Input image2', Img2)
-cv2.waitKey(1)
-#Given the point correspondances between them. i.e (x,y) in imh1 maps to (x',y') in img2
-#We will see in the next assignmnet how to find these correspondances using Feature extraction
+#Given the point correspondances between them. i.e (x,y) in img1 maps to (x',y') in img2
+#We will see in the next assignment how to find these correspondances using Feature extraction
 ##[x' y']=R[x y]+T R:rotation and T: Translation
 A=np.array([[94,249,1,0], [249,-94, 0,1 ],[329, 400, 1,0] ,[400, -329 ,0, 1]])
 b=np.array([30,125,158,373])
@@ -52,10 +48,19 @@ for x_Targ in range(imgH):
             
 
          
-cv2.imshow('Input image2 corrected', Targ_Img/255)
-cv2.waitKey(1)
 #
 crop_Targ=Targ_Img[0:Img1.shape[0],0:Img1.shape[1]]
-cv2.imshow('difference image',abs(Img1-crop_Targ)/255)
-cv2.waitKey(1)
+Difference=abs(Img1-crop_Targ)/255
 
+fig=plt.figure(figsize=(2, 2))
+columns = 2
+rows = 2
+fig.add_subplot(columns, rows, 1)
+plt.imshow(Img1)
+fig.add_subplot(columns, rows, 2)
+plt.imshow(Img2)
+fig.add_subplot(columns, rows, 3)
+plt.imshow(Targ_Img/255)
+fig.add_subplot(columns, rows, 4)
+plt.imshow(Difference)
+plt.show()
