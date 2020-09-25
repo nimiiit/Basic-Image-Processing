@@ -26,7 +26,7 @@ R=[[A_inv_b[0], A_inv_b[1]],[- A_inv_b[1], A_inv_b[0]]]
 R_inv=np.linalg.inv(R)   
 T=[A_inv_b[2],A_inv_b[3]]
 ##Now create a target image with all zeros the same size as input
-imgH, imgW=Img1.shape
+imgH, imgW=Img2.shape
 Targ_Img=np.zeros([imgH,imgW])
 #print(R_inv)
 for x_Targ in range(imgH):
@@ -53,14 +53,23 @@ crop_Targ=Targ_Img[0:Img1.shape[0],0:Img1.shape[1]]
 Difference=abs(Img1-crop_Targ)/255
 
 fig=plt.figure(figsize=(2, 2))
+
 columns = 2
 rows = 2
 fig.add_subplot(columns, rows, 1)
 plt.imshow(Img1)
+plt.title('Image1')
+plt.axis('off')
 fig.add_subplot(columns, rows, 2)
 plt.imshow(Img2)
+plt.title('Image2 with difference and warping')
+plt.axis('off')
 fig.add_subplot(columns, rows, 3)
 plt.imshow(Targ_Img/255)
+plt.title('Image2 rewarped')
+plt.axis('off')
 fig.add_subplot(columns, rows, 4)
 plt.imshow(Difference)
+plt.title('Detected Changes')
+plt.axis('off')
 plt.show()
